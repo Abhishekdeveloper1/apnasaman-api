@@ -53,4 +53,20 @@ class UserController extends Controller
         return response()->json($success);
 
             }
+
+            function userinfo(Request $request)
+            {
+                $user=Auth()->user();
+                $resut= response()->json(['user' => $user], 200);
+                $user = $request->user();
+                return response()->json(['user' => $user]);
+            }
+        
+            public function logout(Request $request) {
+                $token = $request->user()->token();
+                // echo $token;die;
+                $token->revoke();
+                $response = ['message' => 'You have been successfully logged out!'];
+                return response($response, 200);
+            }
 }

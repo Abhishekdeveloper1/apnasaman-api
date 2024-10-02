@@ -24,5 +24,9 @@ Route::post('login', 'App\Http\Controllers\Api\UserController@login')->name('log
 Route::post('register', 'App\Http\Controllers\Api\UserController@register')->name('register');
 
 
+Route::middleware('auth:api')->group(function () {
+    Route::post('userinfo',[UserController::class,'userinfo']);
+    Route::post('logout',[UserController::class,'logout']);
+});
 
 
