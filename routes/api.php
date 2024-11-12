@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProductCategoryController;
+use App\Http\Controllers\Api\ProductSubCategoryController;
+use App\Http\Controllers\Api\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +26,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('userinfo', [UserController::class, 'userinfo'])->name('userinfo');
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
 });
-// Route::post('userinfo', [UserController::class, 'userinfo'])->name('userinfo');
+// Route::get('categories', [CategoryController::class, 'index'])->name('allCategoryList');
+Route::get('allCategoryList', [ProductCategoryController::class, 'index'])->name('allCategoryList.index');
+Route::get('getCategoriesWithSubcategories', [ProductCategoryController::class, 'getCategoriesWithSubcategories'])->name('getCategoriesWithSubcategories');
+Route::get('allSubCategoryList', [ProductSubCategoryController::class, 'index'])->name('allSubCategoryList.index');
+Route::get('productsList/{id}', [ProductController::class, 'index'])->name('productsList.index');
+
